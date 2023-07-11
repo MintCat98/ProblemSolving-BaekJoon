@@ -1,10 +1,11 @@
-w=input().strip().upper()
-s=set(w); d={}
-for i in s:
-    count=0
-    for j in w:
-        if j==i:
-            count+=1
-    d[i]=count
-l=[k for k,v in d.items() if max(d.values())==v]
-print(l[0]) if len(l)==1 else print('?')
+# 아스키 코드 이용한 방법 by tddudwns1
+s=input().upper()
+m=0
+for i in range(26):         # 알파벳 개수
+    c=s.count(chr(i + 65))  # 대문자 알파벳은 65번부터 시작
+    if m<c:
+        m=c
+        r=chr(i + 65)
+    elif m==c:              # 만약 같은 max가 발생하면 ? 출력
+        r='?'
+print(r)
