@@ -1,7 +1,5 @@
-for _ in range(int(input())):
-    h,w,n=map(int,input().split())
+from sys import stdin as si
+for _ in range(int(si.readline())):
+    h,w,n=map(int,si.readline().split())
     a=n%h; b=n//h+1
-    if a==0:
-        a=h; b=n//h
-    a=str(a); b=str(b)
-    print(a+b) if len(b)==2 else print(a+'0'+b)
+    print(h*100+n//h) if a==0 else print(a*100+b)
