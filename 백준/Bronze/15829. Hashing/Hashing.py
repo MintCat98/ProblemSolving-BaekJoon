@@ -1,8 +1,6 @@
 from sys import stdin as si
-l=int(si.readline())
-s=si.readline()[:-1]
-r=31; m=1234567891
+l=si.readlines()[1][:-1]
 c=0
-for i in range(l):
-    c+=(ord(s[i])-96)*(r**i)
-print(c%m)
+for i in range(len(l)):
+    c+=(ord(l[i])-96)*(31**i)
+print(c%1234567891)
