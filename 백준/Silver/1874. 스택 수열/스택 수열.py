@@ -1,6 +1,5 @@
 from sys import stdin as si
-n=int(si.readline())
-an=list(map(int,si.readlines()))
+n,*an=map(int,si.readlines())
 s_temp=[]   # 임시 스택
 s_res=[]    # 결과 스택
 oper=[]     # 연산 과정
