@@ -1,7 +1,5 @@
 from sys import stdin
 import heapq
-def round2(n):
-    return int(n)+(1 if n-int(n)>=0.5 else 0)
 input=stdin.readline
 n=int(input())
 # Heap-sort
@@ -10,10 +8,6 @@ for _ in range(n):
     heapq.heappush(h,int(input()))
 for i in range(n):
     r.append(heapq.heappop(h))
-# Cal Avg
-s=sum(r)
-if s>=0: a=round2(s/n)
-else: a=-round2(-s/n)
 # Cal Mode
 m=0; d={e: 0 for e in r}; k=d.keys()
 for e in r:
@@ -26,4 +20,4 @@ for i in range(len(c)-2,-1,-1):
     else: break
 if len(ms)>=2: m=ms[-2][0]
 else: m=ms[0][0]
-print(f'{a}\n{r[int(n*0.5)]}\n{m}\n{r[-1]-r[0]}')
+print(round(sum(r)/n), r[int(n*0.5)], m, r[-1]-r[0], sep='\n')
