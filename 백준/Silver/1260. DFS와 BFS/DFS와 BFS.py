@@ -1,61 +1,45 @@
 from sys import stdin
 from collections import deque
 
+
+def dfs(start):
+    v_dfs[start] = True
+    r_dfs.append(start)
+    stack = sorted(g[start], reverse=True)
+    while stack:
+        visit = stack.pop()
+        if not v_dfs[visit]:
+            v_dfs[visit] = True
+            r_dfs.append(visit)
+            stack += sorted(g[visit], reverse=True)
+
+
+def bfs(start):
+    v_bfs[start] = True
+    r_bfs.append(start)
+    queue = deque(sorted(g[start]))
+    while queue:
+        visit = queue.popleft()
+        if not v_bfs[visit]:
+            v_bfs[visit] = True
+            r_bfs.append(visit)
+            queue.extend(sorted(g[visit]))
+
+
 input = stdin.readline
-
-
-def dfs(g, start):
-    # Disconnected
-    if start not in g:
-        return [start]
-
-    visited = []
-    s = [start]
-    while s:
-        # Visit / Small first
-        v = s.pop()
-        if v not in visited:
-            visited.append(v)
-        # Find unvisited
-        if len(g[v]) == 0:
-            continue
-        unvisited = sorted(list(set(g[v]) - set(visited)), reverse=True)
-        s += unvisited
-    return visited
-
-
-def bfs(g, start):
-    # Disconnected
-    if start not in g:
-        return [start]
-
-    visited = []
-    q = deque([start])
-    while q:
-        # Visit / Small first
-        v = q.popleft()
-        if v not in visited:
-            visited.append(v)
-        # Find unvisited
-        if len(g[v]) == 0:
-            continue
-        unvisited = sorted(list(set(g[v]) - set(visited)))
-        q.extend(unvisited)
-    return visited
-
-
 n, m, v = map(int, input().split())
-# Fill the graph
-g = {}
-for i in range(m):
+# 공간 미리 확보
+v_dfs = [False] * (n + 1)
+v_bfs = [False] * (n + 1)
+g = [[] for _ in range(n + 1)]
+for _ in range(m):
     v1, v2 = map(int, input().split())
-    if v1 not in g:
-        g[v1] = [v2]
-    else:
-        g[v1].append(v2)
-    if v2 not in g:
-        g[v2] = [v1]
-    else:
-        g[v2].append(v1)
-print(*dfs(g, v))
-print(*bfs(g, v))
+    g[v1].append(v2)
+    g[v2].append(v1)
+
+r_dfs = []
+r_bfs = []
+dfs(v)
+bfs(v)
+print(*r_dfs)
+print(*r_bfs)
