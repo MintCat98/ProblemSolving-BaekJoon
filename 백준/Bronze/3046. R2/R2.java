@@ -7,11 +7,9 @@ public class Main {
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         StringTokenizer st = new StringTokenizer(br.readLine());
-        int r1, r2, s;
+        int r1, s;
         r1 = Integer.parseInt(st.nextToken());
         s = Integer.parseInt(st.nextToken());
-
-        r2 = 2 * s - r1;
-        System.out.println(r2);
+        System.out.println(2 * s - r1);
     }
 }
