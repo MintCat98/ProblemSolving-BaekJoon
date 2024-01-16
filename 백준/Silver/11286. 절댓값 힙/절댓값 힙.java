@@ -15,7 +15,6 @@ public class Main {
                 if (hp.isEmpty() && hm.isEmpty()) {
                     System.out.println(0);
                 } else {
-                    // 여기 로직 수정해야 함!
                     long p = (hp.isEmpty()) ? 0 : hp.peek();
                     long m = (hm.isEmpty()) ? 0 : hm.peek();
                     if (p == 0) {
