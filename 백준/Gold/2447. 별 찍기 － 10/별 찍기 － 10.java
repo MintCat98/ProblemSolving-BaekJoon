@@ -28,22 +28,24 @@ public class Main {
                     ss[j][i] = ' ';
                 }
             }
-        } else {
-            if (size == 1) {
-                ss[y0][x0] = '*';
-            } else {
-                // 9칸 구분
-                int count = 0;
-                int jump = size / 3; // 다음 칸으로 점프
-                for (int i = y0; i < y0 + size; i += jump) {
-                    for (int j = x0; j < x0 + size; j += jump) {
-                        count++;
-                        if (count == 5) {
-                            solve(j, i, jump, true);
-                        } else {
-                            solve(j, i, jump, false);
-                        }
-                    }
+            return;
+        }
+
+        if (size == 1) {
+            ss[y0][x0] = '*';
+            return;
+        }
+        
+        // 9칸 구분
+        int count = 0;
+        int jump = size / 3; // 다음 칸으로 점프
+        for (int i = y0; i < y0 + size; i += jump) {
+            for (int j = x0; j < x0 + size; j += jump) {
+                count++;
+                if (count == 5) {
+                    solve(j, i, jump, true);
+                } else {
+                    solve(j, i, jump, false);
                 }
             }
         }
